@@ -1,0 +1,14 @@
+S01/*
+S02/*
+S04/*
+S05/*
+S06/*
+btre*
+9781838641283_Code.zip
+resource/*
+python-django-tutor*
+env/*
+*.pyc
+__pycache__*
+db.sqlite3
+
