@@ -7,10 +7,29 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Document{% endblock %}</title>
+        <!-- Font Awesome --> 
+        <link rel="stylesheet" href="{% static 'pages/all.css' %}">
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="{% static 'pages/bootstrap.css' %}">
+        <!-- Custom -->
+        <link rel="stylesheet" href="{% static 'pages/style.css' %}">
+        <!-- lightbox -->
+        <link rel="stylesheet" href="{% static 'pages/lightbox.min.css' %}">
+   
     </head>
 
     <body>
-        {% block content %} {% endblock %}
+        {% include 'pages/top-bar.html' %}
+        {% include 'pages/navbar.html' %}
+        
+        {% block content %} 
+        {% endblock %}
+        {% include 'pages/footer.html' %}
+        
+        <script src="{% static 'pages/jquery-3.3.1.min.js' %}"></script>
+        <script src="{% static 'pages/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'pages/lightbox.min.js' %}"></script> 
+        <script src="{% static 'pages/main.js' %}"></script> 
     </body>
 
 </html>
