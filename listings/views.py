@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Listing
 from realtors.models import Realtor
-
+from .choices import *
 def index(request):
     listings=Listing.objects.all()
     realtors=Realtor.objects.all()
@@ -29,4 +29,51 @@ def listing(request, id):
     return render (request,'listings/listing.html',context)
 
 def search(request):
-    return render (request,'listings/search.html')
+    listings=Listing.objects.all()
+    queryset_list=Listing.objects.all()
+    
+    
+    realtors=Realtor.objects.all()
+    if 'keywords' in request.GET:
+        keywords=request.GET['keywords']
+        if keywords:
+            queryset_list=queryset_list.filter(description__icontains=keywords)
+            
+    for query in queryset_list:
+        print('query',queryset_list )          
+    
+    context={
+        'realtors':realtors,
+        'price_choices':price_choices,
+        'bedroom_choices':bedroom_choices,
+        'state_choices':state_choices,
+        'listings':queryset_list,     
+        
+    }
+    for query in queryset_list:
+        print ('query',queryset_list)
+    
+    
+    return render(request,'listings/search.html',context)
+    
+
+def listings_all(request):
+    
+    
+    listings=Listing.objects.all().filter(is_published=True)
+    
+    realtors=Realtor.objects.all()
+    context={
+        'listings':listings,
+        'realtors':realtors,
+        'price_choices':price_choices,
+        'bedroom_choices':bedroom_choices,
+        'state_choices':state_choices,
+        
+        
+    }
+    
+    
+    return render(request, 'listings/listings_all.html',context)
+
+    
