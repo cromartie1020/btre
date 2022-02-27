@@ -51,22 +51,26 @@ def search(request):
             
     
     if 'state' in request.GET:
-        states=request.GET['state']
+        state=request.GET['state']
         if state:
-            queryset_list=queryset_list.filter(state__exact=states)
-            
+            queryset_list=queryset_list.filter(state__exact=state)
+        print('state is:',state)  
+        print('state is:',state)  
+        print('state is:',state)  
+          
     if 'bedrooms' in request.GET:
         bedrooms=request.GET['bedrooms']
         if bedrooms:
-            queryset_list=queryset_list.filter(bedrooms__exact=bedrooms)
-            
+            queryset_list=queryset_list.filter(bedrooms__lte=bedrooms)
+    '''        
     if 'zip' in request.GET:
         zip=request.GET['zip']
         if zip:
             queryset_list=queryset_list.filter(zip__contains=zip)
-            
+    '''        
     if 'price' in request.GET:
         price=request.GET['price']
+        '''
         if price == '$1M+':
             price=1000000
         else:
@@ -74,14 +78,15 @@ def search(request):
              
             #lets remove the $
             
-            price=price[1:]              # Remove the first character the $ 
+            price=price[1:]              # Remove the first character in price is $ 
             if ',' in price:
-                price=price.replace(',','')  # Remove the comma.
+                price=price.replace(',','')  # Remove any commas.
                 price=int(price)             # Change to an integer.
         
-            
+        '''    
+        print('price',price)
         if price:
-            queryset_list=queryset_list.filter(price__lte=price)
+            queryset_list=queryset_list.filter(price__lte = price)
                     
             
     print(queryset_list)     
@@ -90,7 +95,8 @@ def search(request):
         'price_choices':price_choices,
         'bedroom_choices':bedroom_choices,
         'state_choices':state_choices,
-        'listings':queryset_list,     
+        'listings':queryset_list,  
+        'values': request.GET  
         
     }
     
