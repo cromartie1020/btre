@@ -2,6 +2,8 @@ from django.db import models
 
 from datetime import datetime, date
 from realtors.models import Realtor
+from django.contrib.auth.models import User
+
 
 class Listing(models.Model):
     realtor=models.ForeignKey(Realtor,on_delete=models.DO_NOTHING)
@@ -31,6 +33,16 @@ class Listing(models.Model):
         ordering=('-list_date',)
     def __str__(self):
         return self.title
+    
+    
+class Inquiry(models.Model):
+     
+    user_inquiry= models.ForeignKey(User, on_delete=models.CASCADE)
+    user_listing= models.ForeignKey(Listing,on_delete=models.CASCADE)
+    
+    class Meta:
+        verbose_name_plural='user_inquiries' 
+    
     
     
     

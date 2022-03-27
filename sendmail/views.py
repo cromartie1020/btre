@@ -1,14 +1,14 @@
 from django.shortcuts import render
-
+'''
 from django.core.mail import send_mail
 def sendmail(request):
     subject ='A new test.'
-    phone=request.POST[phone]
+    phone=request.POST['phone']
     message=request.POST['message']
     from_email='cromarties2913@gmail.com'
     recipient_list=['hrc345@gmail.com','hrc245@gmail.com']
 
-    '''
+    
     send_mail(
         'Subject here',
         'Here is the message.',
@@ -17,7 +17,7 @@ def sendmail(request):
         fail_silently=False,
     )
 
-    '''
+    
 
     test=send_mail(
         subject,
@@ -31,3 +31,4 @@ def sendmail(request):
         'test':test
     }
     return render(request,'sendmail/sendmail.html',context)
+'''

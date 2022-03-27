@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}Document{% endblock %}</title>
+        <title>BT Real Estate{% block title %} {% endblock %}</title>
         <!-- Font Awesome --> 
         <link rel="stylesheet" href="{% static 'pages/all.css' %}">
         <!-- Bootstrap -->
@@ -15,14 +15,17 @@
         <link rel="stylesheet" href="{% static 'pages/style.css' %}">
         <!-- lightbox -->
         <link rel="stylesheet" href="{% static 'pages/lightbox.min.css' %}">
+        <script src="https://kit.fontawesome.com/0161844961.js" crossorigin="anonymous"></script>
+        
    
     </head>
 
     <body>
         {% include 'pages/top-bar.html' %}
         {% include 'pages/navbar.html' %}
-        
+        {% include 'pages/alert.html' %} 
         {% block content %} 
+       
         {% endblock %}
         {% include 'pages/footer.html' %}
         

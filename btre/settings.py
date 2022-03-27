@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'realtors.apps.RealtorsConfig',
     'sendmail.apps.SendmailConfig',
     'django.contrib.humanize',
-    'accounts.apps.AccountsConfig'
+    'accounts.apps.AccountsConfig',
+    'contacts.apps.ContactsConfig',
     
 ]
 
@@ -140,3 +141,10 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = config['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = config['EMAIL_HOST_PASSWORD']
+
+
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR:'danger',
+    
+}

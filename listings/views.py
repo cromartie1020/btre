@@ -1,7 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Listing
 from realtors.models import Realtor
 from .choices import *
+from .forms import Inquiry_form
+from .models import Inquiry
+
 def index(request):
     listings=Listing.objects.all()
     realtors=Realtor.objects.all()
@@ -76,4 +79,14 @@ def listings_all(request):
     
     return render(request, 'listings/listings_all.html',context)
 
+def inquiry_view(request):
+    form = Inquiry_form(request.POST or None)
+   
+        
+    if form.is_valid():
+        form.save()
+              
     
+    return render(request, 'listings/inquiry.html',{'form':'form'})
+        
+            
